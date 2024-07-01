@@ -1,0 +1,53 @@
+<app-btns-panel (confirmSubmission)="confirmSubmission()"
+                (changeSubmitting)="changeSubmitting($event)"
+                [isSubmitting]="isSubmitting"
+                [isBtnDisabled]="usersForm.invalid"></app-btns-panel>
+
+<form [formGroup]="usersForm">
+  <div formArrayName="users" class="grid">
+    <div *ngFor="let formGroup of usersFormArray.controls; let i = index"
+         class="user-form"
+         [formGroupName]="i">
+      <div class="user-form__input">
+        <div class="user-form__input-label">Country *</div>
+        <app-country-autocomplete formControlName="country"
+                                  class="user-form__input-value"
+                                  [isDisabled]="isSubmitting"></app-country-autocomplete>
+      </div>
+      <div class="user-form__input">
+        <div class="user-form__input-label">Username *</div>
+        <input formControlName="name"
+               class="form-control"
+               appValidationMessage
+               [isDisabledInput]="isSubmitting"
+               validationItem="Username"
+               messageVerticalPosition="65" />
+      </div>
+      <div class="user-form__input">
+        <div class="user-form__input-label">Birthday *</div>
+        <div class="input-group">
+          <input class="form-control"
+                 placeholder="yyyy-mm-dd"
+                 name="dp"
+                 formControlName="birthday"
+                 ngbDatepicker
+                 #d="ngbDatepicker"
+                 appValidationMessage
+                 validationItem="Birthday"
+                 messageVerticalPosition="35"
+                 [isDisabledInput]="isSubmitting"/>
+          <button class="btn btn-outline-secondary bi bi-calendar3"
+                  [disabled]="isSubmitting"
+                  (click)="d.toggle()"
+                  type="button"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-form user-form--add-btn"
+         [class.disabled]="isSubmitting || usersFormArray.length >= 10"
+         (click)="addForm()">
+      <span class="user-form--add-btn-icon">+</span>
+    </div>
+  </div>
+</form>

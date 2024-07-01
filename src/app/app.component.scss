@@ -1,0 +1,7 @@
+@import "variables";
+
+.main {
+  min-height: calc(100vh - 2 * #{$container-margin});
+  margin: $container-margin;
+  background: $white;
+}

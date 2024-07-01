@@ -1,0 +1,12 @@
+<input type="text"
+       class="form-control"
+       placeholder=""
+       (selectItem)="selectItem($event)"
+       [value]="value"
+       [disabled]="isDisabled"
+       [ngbTypeahead]="search"
+       [inputFormatter]="formatter"
+       [resultFormatter]="formatter"
+       appValidationMessage
+       validationItem="Country"
+       messageVerticalPosition="65">

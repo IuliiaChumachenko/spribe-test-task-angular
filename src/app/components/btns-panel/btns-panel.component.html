@@ -1,0 +1,12 @@
+<div class="buttons-panel">
+  <button *ngIf="!isSubmitting"
+          class="btn btn-primary text-white"
+          [disabled]="isBtnDisabled"
+          (click)="startTimer()">Submit All Forms</button>
+  <ng-container *ngIf="isSubmitting">
+    <button class="btn btn-danger"
+            (click)="cancelSubmitting()">Cancel</button>
+    <span>0:{{ timer < 10 ? '0' : '' }}{{ timer }}</span>
+  </ng-container>
+</div>
+
